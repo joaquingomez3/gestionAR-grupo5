@@ -9,9 +9,6 @@ public class equipoMiembros {
     private Equipo equipo;
     private Miembro miembro;
 
-    public equipoMiembros() {
-    }
-
     public equipoMiembros(int idMiembroEq, LocalDate fechaIncorporacion, Equipo equipo, Miembro miembro) {
         this.idMiembroEq = idMiembroEq;
         this.fechaIncorporacion = fechaIncorporacion;
@@ -23,6 +20,9 @@ public class equipoMiembros {
         this.fechaIncorporacion = fechaIncorporacion;
         this.equipo = equipo;
         this.miembro = miembro;
+    }
+    
+    public equipoMiembros() {
     }
 
     public int getIdMiembroEq() {

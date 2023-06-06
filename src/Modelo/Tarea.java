@@ -11,9 +11,6 @@ public class Tarea {
     private boolean estado;
     private equipoMiembros equipoM;
 
-    public Tarea() {
-    }
-
     public Tarea(int idTarea, String nombre, LocalDate fechaCreacion, LocalDate fechaCierre, boolean estado, equipoMiembros equipoM) {
         this.idTarea = idTarea;
         this.nombre = nombre;
@@ -31,6 +28,9 @@ public class Tarea {
         this.equipoM = equipoM;
     }
 
+    public Tarea() {
+    }
+    
     public int getIdTarea() {
         return idTarea;
     }

@@ -8,10 +8,7 @@ public class Proyecto {
    private String nombre;
    private String descripcion;
    private LocalDate fechaInicio;
-   private boolean estado;
-
-    public Proyecto() {
-    }
+   private boolean estado;   
 
     public Proyecto(int idProyecto, String nombre, String descripcion, LocalDate fechaInicio, boolean estado) {
         this.idProyecto = idProyecto;
@@ -26,6 +23,9 @@ public class Proyecto {
         this.descripcion = descripcion;
         this.fechaInicio = fechaInicio;
         this.estado = estado;
+    }
+    
+     public Proyecto() {
     }
 
     public int getIdProyecto() {

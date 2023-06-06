@@ -4,16 +4,13 @@ package Modelo;
 import java.time.LocalDate;
 
 public class Equipo {
-   private Proyecto proyecto;
    private int idEquipo;
+   private Proyecto proyecto;   
    private String nombre;
    private LocalDate fechaCreacion;
    private boolean estado;
 
-    public Equipo() {
-    }
-
-    public Equipo(Proyecto proyecto, int idEquipo, String nombre, LocalDate fechaCreacion, boolean estado) {
+    public Equipo(int idEquipo, Proyecto proyecto, String nombre, LocalDate fechaCreacion, boolean estado) {
         this.proyecto = proyecto;
         this.idEquipo = idEquipo;
         this.nombre = nombre;
@@ -26,6 +23,9 @@ public class Equipo {
         this.nombre = nombre;
         this.fechaCreacion = fechaCreacion;
         this.estado = estado;
+    }
+    
+    public Equipo() {
     }
 
     public Proyecto getProyecto() {
