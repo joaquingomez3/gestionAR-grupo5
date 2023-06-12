@@ -8,6 +8,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -70,5 +72,50 @@ public class TareaData {
         }
     }
     
+    public void eliminarTarea(int idTarea) {
+    try {
+        String sql = "UPDATE tarea SET estado = 0 WHERE idTarea = ?;";
+        
+        PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+        ps.setInt(1, idTarea);
+        ps.executeUpdate();
+        
+        ps.close();
+        
+    } catch (SQLException ex) {
+        Logger.getLogger(TareaData.class.getName()).log(Level.SEVERE, null, ex);
+    }
+} 
     
+    public List<Tarea> listarTareas(){
+              List<Tarea> tarea = new ArrayList<>();    
+
+            try {
+                String query = "SELECT * FROM tarea";
+                PreparedStatement ps;
+                ps = con.prepareStatement(query);
+                ResultSet rs = ps.executeQuery();
+
+                while(rs.next()){
+
+                    Tarea tar = new Tarea();
+                    tar.setIdTarea(rs.getInt("idTarea"));
+                    tar.setNombre(rs.getString("nombre"));
+                    tar.setFechaCreacion(rs.getDate("fechaCreacion").toLocalDate());
+                    tar.setFechaCierre(rs.getDate("fechaNaCierre").toLocalDate());
+                    tar.setEstado(rs.getBoolean("estado"));
+//                    tar.setEquipoM(rs.getInt("idMiembroEq"));
+                                 
+                    tarea.add(tar);
+
+                }      
+                ps.close();
+            }catch (SQLException ex) {
+                JOptionPane.showInternalMessageDialog(null, "Error tareas "+ex.getMessage());
+            }
+            return tarea;
+
+        }
+
+
 }
