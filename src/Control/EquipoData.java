@@ -50,6 +50,38 @@ public class EquipoData {
         }
     }
 
+    public Equipo obtenerEquipo(int idEquipo) throws SQLException {
+    Equipo equipo = null;
+    String sql = "SELECT * FROM equipo WHERE idEquipo = ?";
+
+    PreparedStatement ps = null;
+    ResultSet rs = null;
+
+    try {
+        ps = con.prepareStatement(sql);
+        ps.setInt(1, idEquipo);
+
+        rs = ps.executeQuery();
+
+        if (rs.next()) {
+            equipo = new Equipo();
+            equipo.setIdEquipo(rs.getInt("idEquipo"));
+            equipo.setNombre(rs.getString("nombre"));
+            // Establecer el resto de propiedades del equipo según la estructura de la tabla
+        }
+    } catch (SQLException ex) {
+        Logger.getLogger(EquipoData.class.getName()).log(Level.SEVERE, null, ex);
+    } finally {
+        if (rs != null) {
+            rs.close();
+        }
+        if (ps != null) {
+            ps.close();
+        }
+    }
+
+    return equipo;
+}
 
 
 }

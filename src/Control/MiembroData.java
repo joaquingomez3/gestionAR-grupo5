@@ -47,5 +47,37 @@ public class MiembroData {
         }
     }
 
+    public Miembro obtenerMiembro(int idMiembro) throws SQLException {
+    Miembro miembro = null;
+    String sql = "SELECT * FROM miembro WHERE idMiembro = ?";
+
+    PreparedStatement ps = null;
+    ResultSet rs = null;
+
+    try {
+        ps = con.prepareStatement(sql);
+        ps.setInt(1, idMiembro);
+
+        rs = ps.executeQuery();
+
+        if (rs.next()) {
+            miembro = new Miembro();
+            miembro.setIdMiembro(rs.getInt("idMiembro"));
+            miembro.setNombre(rs.getString("nombre"));
+            // Establecer el resto de propiedades del miembro según la estructura de la tabla
+        }
+    } catch (SQLException ex) {
+        Logger.getLogger(MiembroData.class.getName()).log(Level.SEVERE, null, ex);
+    } finally {
+        if (rs != null) {
+            rs.close();
+        }
+        if (ps != null) {
+            ps.close();
+        }
+    }
+
+    return miembro;
+}
 
 }
