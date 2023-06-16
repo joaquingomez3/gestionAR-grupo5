@@ -8,6 +8,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -48,5 +50,33 @@ public class ProyectoData {
         }
     }
     
+     public List<Proyecto> listarTareas(){
+              List<Proyecto> proyectos = new ArrayList<>();    
+
+            try {
+                String query = "SELECT * FROM proyecto";
+                PreparedStatement ps;
+                ps = con.prepareStatement(query);
+                ResultSet rs = ps.executeQuery();
+
+                while(rs.next()){
+
+                    Proyecto proy = new Proyecto();
+                    proy.setIdProyecto(rs.getInt("idProyecto"));
+                    proy.setNombre(rs.getString("nombre"));
+                    proy.setDescripcion(rs.getString("descripcion"));
+                    proy.setFechaInicio(rs.getDate("fechaInicio").toLocalDate());
+                    proy.setEstado(rs.getBoolean("estado"));
+                                 
+                    proyectos.add(proy);
+
+                }      
+                ps.close();
+            }catch (SQLException ex) {
+                JOptionPane.showInternalMessageDialog(null, "Error proyectos "+ex.getMessage());
+            }
+            return proyectos;
+
+        }
     
 }
