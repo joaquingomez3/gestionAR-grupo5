@@ -6,7 +6,7 @@ import Control.MiembroData;
 import Control.ProyectoData;
 import Control.TareaData;
 import java.time.LocalDate;
-import Control.equipoMiembrosData;
+import Control.EquipoMiembrosData;
 
 public class GestionAR {
 
@@ -28,8 +28,8 @@ public class GestionAR {
         EquipoData e = new EquipoData();
 //        e.crearEquipo(equip);
         
-        equipoMiembros equipom = new equipoMiembros(4, LocalDate.of(2023, 5, 31),equi,mie);
-        equipoMiembrosData em = new equipoMiembrosData();
+        EquipoMiembros equipom = new EquipoMiembros(4, LocalDate.of(2023, 5, 31),equi,mie);
+        EquipoMiembrosData em = new EquipoMiembrosData();
 //        em.crearEquipoMiembros(equipom);
 
         Tarea tarea = new Tarea(7, "correcion", LocalDate.of(2023, 5, 31), LocalDate.of(2023, 6, 30), true, equipom);

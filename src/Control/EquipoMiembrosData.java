@@ -1,7 +1,9 @@
 
 package Control;
 
-import Modelo.equipoMiembros;
+import Modelo.Equipo;
+import Modelo.EquipoMiembros;
+import Modelo.Miembro;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -16,14 +18,14 @@ import javax.swing.JOptionPane;
 
 
 
-public class equipoMiembrosData {
+public class EquipoMiembrosData {
      private Connection con;
     
-    public equipoMiembrosData(){
+    public EquipoMiembrosData(){
         con= Conexion.getConexion();
     }
 
-    public void crearEquipoMiembros(equipoMiembros equipomiembros){
+    public void crearEquipoMiembros(EquipoMiembros equipomiembros){
         try {
             String sql= "INSERT INTO equipomiembros(fechaIncorporacion, idEquipo, idMiembro) values(?,?,?)";
             
@@ -50,6 +52,38 @@ public class equipoMiembrosData {
         }
     }
 
+    public EquipoMiembros obtenerMiembroEquipo(int idMiembroEq)
+        throws SQLException {
+            EquipoMiembros miembroEq = null;
+            String sql = "SELECT * FROM equipoMiembros WHERE idMiembroEq = ?";
+
+            PreparedStatement ps = null;
+            ResultSet rs = null;
+
+            try {
+                ps = con.prepareStatement(sql);
+                ps.setInt(1, idMiembroEq);
+                rs = ps.executeQuery();
+
+                if (rs.next()) {
+                    miembroEq = new EquipoMiembros();
+                    miembroEq.setIdMiembroEq(rs.getInt("idMiembroEq"));
+                    miembroEq.setFechaIncorporacion(rs.getDate("fechaIncorporacion").toLocalDate());
+                    miembroEq.getEquipo().setIdEquipo(rs.getInt("idEquipo"));
+                    miembroEq.getMiembro().setIdMiembro(rs.getInt("idMiembro"));
+
+                }
+            } finally {
+                if (rs != null) {
+                    rs.close();
+                }
+                if (ps != null) {
+                    ps.close();
+                }
+            }
+
+            return miembroEq;
+        }
 
 
 }

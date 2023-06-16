@@ -9,9 +9,11 @@ public class Tarea {
     private LocalDate fechaCreacion;
     private LocalDate fechaCierre;
     private boolean estado;
-    private equipoMiembros equipoM;
+    private EquipoMiembros equipoM;
+    private Proyecto proyecto;
+    
 
-    public Tarea(int idTarea, String nombre, LocalDate fechaCreacion, LocalDate fechaCierre, boolean estado, equipoMiembros equipoM) {
+    public Tarea(int idTarea, String nombre, LocalDate fechaCreacion, LocalDate fechaCierre, boolean estado, EquipoMiembros equipoM) {
         this.idTarea = idTarea;
         this.nombre = nombre;
         this.fechaCreacion = fechaCreacion;
@@ -20,7 +22,7 @@ public class Tarea {
         this.equipoM = equipoM;
     }
 
-    public Tarea(String nombre, LocalDate fechaCreacion, LocalDate fechaCierre, boolean estado, equipoMiembros equipoM) {
+    public Tarea(String nombre, LocalDate fechaCreacion, LocalDate fechaCierre, boolean estado, EquipoMiembros equipoM) {
         this.nombre = nombre;
         this.fechaCreacion = fechaCreacion;
         this.fechaCierre = fechaCierre;
@@ -30,7 +32,14 @@ public class Tarea {
 
     public Tarea() {
     }
-    
+
+    public Tarea(int idTarea, String nombre, EquipoMiembros equipoM, Proyecto proyecto) {
+        this.idTarea = idTarea;
+        this.nombre = nombre;
+        this.equipoM = equipoM;
+        this.proyecto = proyecto;
+    }
+       
     public int getIdTarea() {
         return idTarea;
     }
@@ -71,12 +80,20 @@ public class Tarea {
         this.estado = estado;
     }
 
-    public equipoMiembros getEquipoM() {
+    public EquipoMiembros getEquipoM() {
         return equipoM;
     }
 
-    public void setEquipoM(equipoMiembros equipoM) {
+    public void setEquipoM(EquipoMiembros equipoM) {
         this.equipoM = equipoM;
+    }
+    
+    public Proyecto getProyecto() {
+        return proyecto;
+    }
+
+    public void setProyecto(Proyecto proyecto) {
+        this.proyecto = proyecto;
     }
 
     @Override

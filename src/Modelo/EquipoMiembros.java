@@ -3,26 +3,26 @@ package Modelo;
 
 import java.time.LocalDate;
 
-public class equipoMiembros {
+public class EquipoMiembros {
     private int idMiembroEq;
     private LocalDate fechaIncorporacion;
     private Equipo equipo;
     private Miembro miembro;
 
-    public equipoMiembros(int idMiembroEq, LocalDate fechaIncorporacion, Equipo equipo, Miembro miembro) {
+    public EquipoMiembros(int idMiembroEq, LocalDate fechaIncorporacion, Equipo equipo, Miembro miembro) {
         this.idMiembroEq = idMiembroEq;
         this.fechaIncorporacion = fechaIncorporacion;
         this.equipo = equipo;
         this.miembro = miembro;
     }
 
-    public equipoMiembros(LocalDate fechaIncorporacion, Equipo equipo, Miembro miembro) {
+    public EquipoMiembros(LocalDate fechaIncorporacion, Equipo equipo, Miembro miembro) {
         this.fechaIncorporacion = fechaIncorporacion;
         this.equipo = equipo;
         this.miembro = miembro;
     }
     
-    public equipoMiembros() {
+    public EquipoMiembros() {
     }
 
     public int getIdMiembroEq() {
